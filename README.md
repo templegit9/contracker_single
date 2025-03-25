@@ -57,7 +57,12 @@ src/
 
 2. Install dependencies
    ```
-   npm install
+   npm install --legacy-peer-deps
+   ```
+
+   If you encounter dependency resolution errors, run the reset script:
+   ```
+   node reset-dependencies.js
    ```
 
 3. Start the development server
@@ -66,6 +71,28 @@ src/
    ```
 
 4. The application will be available at http://localhost:3000
+
+## Troubleshooting
+
+### Dependency Resolution Errors
+
+If you encounter `npm ERR! ERESOLVE unable to resolve dependency tree` errors, try the following:
+
+1. Use the reset script:
+   ```
+   node reset-dependencies.js
+   ```
+
+2. Or manually perform these steps:
+   ```
+   rm -rf node_modules package-lock.json
+   npm install --legacy-peer-deps
+   ```
+
+3. For specific React-related errors, you may need to:
+   ```
+   npm install --save --legacy-peer-deps react-dom@^18.2.0 react@^18.2.0
+   ```
 
 ## Testing
 

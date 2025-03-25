@@ -7,11 +7,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "reset": "node reset-dependencies.js",
+    "install:legacy": "npm install --legacy-peer-deps",
+    "clean": "rimraf node_modules package-lock.json"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
-    "@material-ui/icons": "^4.11.3",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.11",
     "chart.js": "^3.9.1",
     "crypto-js": "^4.1.1",
     "localforage": "^1.10.0",
@@ -27,7 +32,8 @@
     "@testing-library/user-event": "^14.4.3",
     "tailwindcss": "^3.2.7",
     "postcss": "^8.4.21",
-    "autoprefixer": "^10.4.13"
+    "autoprefixer": "^10.4.13",
+    "rimraf": "^3.0.2"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
   }
 } 
