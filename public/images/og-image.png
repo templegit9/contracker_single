@@ -1,0 +1,8 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="630" fill="#f8fafc"/>
+    <rect x="240" y="150" width="720" height="330" rx="16" fill="#3B82F6"/>
+    <text x="600" y="280" font-family="Arial" font-size="72" font-weight="bold" fill="white" text-anchor="middle">Platform</text>
+    <text x="600" y="360" font-family="Arial" font-size="72" font-weight="bold" fill="white" text-anchor="middle">Engagement Tracker</text>
+    <path d="M400 315C400 306.163 407.163 299 416 299H576C584.837 299 592 306.163 592 315C592 323.837 584.837 331 576 331H416C407.163 331 400 323.837 400 315Z" fill="white"/>
+    <path d="M608 315C608 306.163 615.163 299 624 299H784C792.837 299 800 306.163 800 315C800 323.837 792.837 331 784 331H624C615.163 331 608 323.837 608 315Z" fill="white"/>
+  </svg>
