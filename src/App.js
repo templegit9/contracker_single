@@ -6,6 +6,7 @@ import DashboardPage from './pages/DashboardPage';
 import ContentLibraryPage from './pages/ContentLibraryPage';
 import SettingsPage from './pages/SettingsPage';
 import ProfilePage from './pages/ProfilePage';
+import GettingStartedPage from './pages/GettingStartedPage';
 import { useAuth } from './contexts/AuthContext';
 import { useUI } from './contexts/UIContext';
 import Layout from './components/Layout';
@@ -43,6 +44,7 @@ function App() {
       <Route element={currentUser ? <Layout /> : <Navigate to="/login" />}>
         <Route path="/" element={<DashboardPage />} />
         <Route path="/content" element={<ContentLibraryPage />} />
+        <Route path="/getting-started" element={<GettingStartedPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Route>

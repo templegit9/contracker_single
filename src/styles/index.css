@@ -1,6 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-service-now-green: #81b5a1;
+  --color-service-now-light-green: #b3d1c8;
+  --color-service-now-dark-green: #597e72;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  @apply antialiased;
+}
+
+/* Custom button styles */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md focus:outline-none transition-colors duration-150;
+}
+
+.btn-primary {
+  @apply bg-green-600 hover:bg-green-700 text-white dark:bg-green-700 dark:hover:bg-green-800 focus:ring focus:ring-green-500 focus:ring-opacity-50;
+}
+
+.btn-primary:disabled {
+  @apply bg-green-400 cursor-not-allowed;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 focus:ring focus:ring-gray-500 focus:ring-opacity-50;
+}
+
+.btn-secondary:disabled {
+  @apply bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-500;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white dark:bg-red-700 dark:hover:bg-red-800 focus:ring focus:ring-red-500 focus:ring-opacity-50;
+}
+
+.btn-danger:disabled {
+  @apply bg-red-400 cursor-not-allowed;
+}
+
+/* Form controls */
+.form-input {
+  @apply shadow-sm focus:ring focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md p-2;
+}
+
+.form-select {
+  @apply shadow-sm focus:ring focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md p-2 pr-8;
+}
+
+.form-textarea {
+  @apply shadow-sm focus:ring focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md p-2;
+}
+
+.form-checkbox {
+  @apply h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded;
+}
+
+.form-radio {
+  @apply h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 dark:border-gray-600 dark:bg-gray-700;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+}
+
+.form-hint {
+  @apply mt-1 text-sm text-gray-500 dark:text-gray-400;
+}
+
+.form-error {
+  @apply mt-1 text-sm text-red-600 dark:text-red-400;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow p-6;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+/* Animation classes */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Stat card styles */
+.stat-card {
+  @apply bg-white dark:bg-gray-800 shadow rounded-lg p-4 flex flex-col;
+}
+
+.stat-card-title {
+  @apply text-sm font-medium text-gray-500 dark:text-gray-400;
+}
+
+.stat-card-value {
+  @apply text-3xl font-semibold text-gray-900 dark:text-white mt-1;
+}
+
+.stat-card-description {
+  @apply text-sm font-medium text-gray-600 dark:text-gray-300 mt-2;
+}
+
+/* Platform-specific colors */
+.platform-youtube {
+  @apply text-red-600 dark:text-red-400;
+}
+
+.platform-linkedin {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+.platform-servicenow {
+  @apply text-green-600 dark:text-green-400;
+}
+
+/* Transition classes */
+.transition-all {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+  .responsive-table thead {
+    @apply hidden;
+  }
+  
+  .responsive-table tbody tr {
+    @apply block border-b border-gray-200 dark:border-gray-700 py-2;
+  }
+  
+  .responsive-table tbody td {
+    @apply block text-right py-1 px-3;
+  }
+  
+  .responsive-table tbody td::before {
+    content: attr(data-label);
+    @apply float-left font-medium text-gray-700 dark:text-gray-300;
+  }
+}
 
 /* Custom styles */
 .btn {
@@ -29,16 +184,6 @@
 
 .badge.other {
   @apply bg-gray-100 text-gray-600;
-}
-
-/* Animation */
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
 
 /* Toggle Switch */

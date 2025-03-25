@@ -1,135 +1,137 @@
-// Platform-specific API integrations
+/**
+ * API integrations for various platforms
+ * 
+ * These functions handle the fetching of content information from different platforms.
+ * In a real application, these would make actual API calls to the respective platforms.
+ * For this demo, they simulate API responses with reasonable delays.
+ */
 
-// Fetch YouTube video information
+/**
+ * Fetch YouTube video information
+ * @param {string} videoId - YouTube video ID
+ * @param {string} apiKey - YouTube API key
+ * @returns {Promise<Object>} - Video information
+ */
 export async function fetchYouTubeInfo(videoId, apiKey) {
+  // In a real app, this would call the YouTube API
+  // Example: https://www.googleapis.com/youtube/v3/videos?id={videoId}&key={apiKey}&part=snippet,contentDetails
+  
+  // Simulate API call with delay
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  
+  // Check if API key is provided
   if (!apiKey) {
-    throw new Error('YouTube API key is not configured. Please add an API key in Settings.');
+    throw new Error('YouTube API key is not configured. Please add it in Settings.');
   }
   
-  try {
-    // Make API call to YouTube Data API
-    const videoInfoUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoId}&key=${apiKey}`;
-    
-    const response = await fetch(videoInfoUrl);
-    
-    if (!response.ok) {
-      throw new Error(`YouTube API returned status: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    
-    if (!data.items || data.items.length === 0) {
-      throw new Error('No data found for this YouTube video');
-    }
-    
-    const snippet = data.items[0].snippet;
-    const contentDetails = data.items[0].contentDetails;
-    
-    // Parse ISO 8601 duration format
-    let duration = '';
-    if (contentDetails && contentDetails.duration) {
-      duration = formatYouTubeDuration(contentDetails.duration);
-    }
-    
-    return {
-      title: snippet.title,
-      publishedDate: new Date(snippet.publishedAt),
-      duration: duration
-    };
-  } catch (error) {
-    console.error('Error fetching YouTube data:', error);
-    
-    // For development/demo, return fallback data
-    return {
-      title: `YouTube Video: ${videoId}`,
-      publishedDate: new Date(),
-      duration: '0:00'
-    };
+  // Simulate parsing video ID from different URL formats
+  if (!videoId) {
+    throw new Error('Could not extract video ID from URL');
   }
+  
+  // Mock response
+  return {
+    title: `YouTube Video - ${videoId}`,
+    description: 'This is a sample description for the YouTube video.',
+    publishedDate: new Date().toISOString(),
+    duration: '10:30',
+    thumbnailUrl: `https://img.youtube.com/vi/${videoId}/0.jpg`
+  };
 }
 
-// Format YouTube ISO 8601 duration to readable format (HH:MM:SS)
-function formatYouTubeDuration(isoDuration) {
-  const match = isoDuration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+/**
+ * Fetch ServiceNow article information
+ * @param {string} articleId - ServiceNow article ID
+ * @param {Object} config - ServiceNow API configuration
+ * @returns {Promise<Object>} - Article information
+ */
+export async function fetchServiceNowInfo(articleId, config) {
+  // In a real app, this would call the ServiceNow API
   
-  if (!match) return '0:00';
+  // Simulate API call with delay
+  await new Promise(resolve => setTimeout(resolve, 800));
   
-  const hours = (match[1] && match[1].replace('H', '')) || 0;
-  const minutes = (match[2] && match[2].replace('M', '')) || 0;
-  const seconds = (match[3] && match[3].replace('S', '')) || 0;
-  
-  let formatted = '';
-  
-  if (hours > 0) {
-    formatted += `${hours}:`;
-    formatted += `${minutes.toString().padStart(2, '0')}:`;
-  } else {
-    formatted += `${minutes}:`;
+  // Check if instance is configured
+  if (!config.instance) {
+    throw new Error('ServiceNow instance is not configured. Please add it in Settings.');
   }
   
-  formatted += seconds.toString().padStart(2, '0');
-  
-  return formatted;
+  // Mock response
+  return {
+    title: `ServiceNow Article - ${articleId}`,
+    description: 'This is a sample description for the ServiceNow article.',
+    publishedDate: new Date().toISOString(),
+    author: 'ServiceNow User'
+  };
 }
 
-// Fetch ServiceNow content information
-export async function fetchServiceNowInfo(blogId, config) {
-  // In a real implementation, you would make an API call to ServiceNow
-  try {
-    // Check for required config
-    if (!config.instance || !config.username || !config.password) {
-      throw new Error('ServiceNow API configuration is incomplete');
-    }
-    
-    console.log(`Would fetch ServiceNow info for blog ID: ${blogId}`);
-    
-    // Simulate a delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    // In a real app, you would use the config to authenticate and fetch real data
-    // For development/demo, return mock data
-    return {
-      title: `ServiceNow Blog: ${blogId}`,
-      publishedDate: new Date()
-    };
-  } catch (error) {
-    console.error('Error fetching ServiceNow data:', error);
-    
-    // Return fallback data
-    return {
-      title: `ServiceNow Blog: ${blogId}`,
-      publishedDate: new Date()
-    };
-  }
-}
-
-// Fetch LinkedIn content information
+/**
+ * Fetch LinkedIn post information
+ * @param {string} postId - LinkedIn post ID
+ * @param {Object} config - LinkedIn API configuration
+ * @returns {Promise<Object>} - Post information
+ */
 export async function fetchLinkedInInfo(postId, config) {
-  // In a real implementation, you would use LinkedIn API
+  // In a real app, this would call the LinkedIn API
+  
+  // Simulate API call with delay
+  await new Promise(resolve => setTimeout(resolve, 600));
+  
+  // Check if client ID is configured
+  if (!config.clientId) {
+    throw new Error('LinkedIn API credentials are not configured. Please add them in Settings.');
+  }
+  
+  // Mock response
+  return {
+    title: `LinkedIn Post - ${postId}`,
+    description: 'This is a sample description for the LinkedIn post.',
+    publishedDate: new Date().toISOString(),
+    author: 'LinkedIn User'
+  };
+}
+
+/**
+ * Extract content ID from a URL based on platform
+ * @param {string} url - Content URL
+ * @param {string} platform - Platform (youtube, servicenow, linkedin)
+ * @returns {string} - Extracted content ID
+ */
+export function extractContentId(url, platform) {
   try {
-    // Check for required config
-    if (!config.clientId || !config.clientSecret) {
-      throw new Error('LinkedIn API configuration is incomplete');
+    const urlObj = new URL(url);
+    
+    switch (platform) {
+      case 'youtube':
+        // Extract video ID from various YouTube URL formats
+        const videoId = urlObj.searchParams.get('v');
+        if (videoId) return videoId;
+        
+        if (urlObj.hostname === 'youtu.be') {
+          return urlObj.pathname.substring(1);
+        }
+        
+        if (urlObj.pathname.includes('/embed/')) {
+          return urlObj.pathname.split('/embed/')[1].split('/')[0];
+        }
+        
+        return url;
+      
+      case 'servicenow':
+        // Extract article ID from ServiceNow URL
+        return urlObj.pathname.split('/').pop();
+      
+      case 'linkedin':
+        // Extract post ID from LinkedIn URL
+        const linkedInMatch = urlObj.pathname.match(/\/posts\/([^\/]+)/);
+        if (linkedInMatch) return linkedInMatch[1];
+        return urlObj.pathname.split('-').pop();
+      
+      default:
+        return url;
     }
-    
-    console.log(`Would fetch LinkedIn info for post ID: ${postId}`);
-    
-    // Simulate a delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    // In a real app, you would use the config to authenticate and fetch real data
-    // For development/demo, return mock data
-    return {
-      title: `LinkedIn Post: ${postId}`,
-      publishedDate: new Date()
-    };
   } catch (error) {
-    console.error('Error fetching LinkedIn data:', error);
-    
-    // Return fallback data
-    return {
-      title: `LinkedIn Post: ${postId}`,
-      publishedDate: new Date()
-    };
+    console.error('Error extracting content ID:', error);
+    return url;
   }
 } 

@@ -21,7 +21,7 @@ export function ContentProvider({ children }) {
     servicenow: { instance: '', username: '', password: '' },
     linkedin: { clientId: '', clientSecret: '' }
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   // Map to lookup content item by URL quickly
   const [urlToContentMap, setUrlToContentMap] = useState({});
 

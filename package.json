@@ -2,6 +2,7 @@
   "name": "content-tracker",
   "version": "1.0.0",
   "description": "Platform Engagement Tracker",
+  "homepage": ".",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -10,7 +11,10 @@
     "eject": "react-scripts eject",
     "reset": "node reset-dependencies.js",
     "install:legacy": "npm install --legacy-peer-deps",
-    "clean": "rimraf node_modules package-lock.json"
+    "clean": "rimraf node_modules package-lock.json",
+    "predeploy": "npm run build",
+    "deploy": "netlify deploy",
+    "deploy:prod": "netlify deploy --prod"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -19,6 +23,7 @@
     "@mui/material": "^5.11.11",
     "chart.js": "^3.9.1",
     "crypto-js": "^4.1.1",
+    "date-fns": "^2.29.3",
     "localforage": "^1.10.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
@@ -27,13 +32,15 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "tailwindcss": "^3.2.7",
     "postcss": "^8.4.21",
     "autoprefixer": "^10.4.13",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "netlify-cli": "^15.0.0"
   },
   "eslintConfig": {
     "extends": [

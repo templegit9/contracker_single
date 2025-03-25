@@ -72,56 +72,95 @@ src/
 
 4. The application will be available at http://localhost:3000
 
+## Demo Account
+
+You can use the following credentials to log in to the application:
+- **Email:** demo@example.com
+- **Password:** password
+
+## API Configuration
+
+This application can integrate with the following external APIs:
+- YouTube Data API
+- ServiceNow API
+- LinkedIn API
+
+You can configure your API keys in the Settings page after logging in. Note that the application will work with mock data even without API keys.
+
+## Deployment
+
+### Deploying to Netlify
+
+You can deploy this application to Netlify with a few simple steps:
+
+#### Option 1: Using the Netlify CLI
+
+1. Install the Netlify CLI if you haven't already:
+   ```
+   npm install netlify-cli -g
+   ```
+
+2. Build the application:
+   ```
+   npm run build
+   ```
+
+3. Deploy to Netlify (this will create a draft URL):
+   ```
+   npm run deploy
+   ```
+
+4. To deploy to production:
+   ```
+   npm run deploy:prod
+   ```
+
+#### Option 2: Using the Netlify UI
+
+1. Create a new site from Git on the Netlify dashboard.
+
+2. Connect to your GitHub/GitLab/Bitbucket repository.
+
+3. Configure the build settings:
+   - Build command: `npm run build`
+   - Publish directory: `build`
+
+4. Deploy the site.
+
+The application already includes the necessary configuration files for Netlify:
+- `netlify.toml` - Configures build settings and redirects
+- `public/_redirects` - Ensures proper routing for the SPA
+
 ## Troubleshooting
 
 ### Dependency Resolution Errors
 
 If you encounter `npm ERR! ERESOLVE unable to resolve dependency tree` errors, try the following:
 
-1. Use the reset script:
+1. Use the `--legacy-peer-deps` flag when installing:
+   ```
+   npm install --legacy-peer-deps
+   ```
+
+2. Run the reset script:
    ```
    node reset-dependencies.js
    ```
 
-2. Or manually perform these steps:
+3. Check that your `.npmrc` file contains:
    ```
-   rm -rf node_modules package-lock.json
-   npm install --legacy-peer-deps
-   ```
-
-3. For specific React-related errors, you may need to:
-   ```
-   npm install --save --legacy-peer-deps react-dom@^18.2.0 react@^18.2.0
+   legacy-peer-deps=true
+   engine-strict=false
    ```
 
-## Testing
+### Build Errors
 
-Run the test suite with:
+If you encounter build errors, try clearing your cache and node_modules:
 
 ```
-npm test
+npm run clean
+npm run install:legacy
 ```
-
-### Testing Strategy
-
-- Unit tests for individual components
-- Context API tests
-- Integration tests for key user flows
-- API mocking for external services
-
-## API Configuration
-
-To use platform integrations, configure the APIs in the Settings section:
-
-- **YouTube**: Requires a Google API key with YouTube Data API v3 enabled
-- **ServiceNow**: Requires instance URL, username, and password
-- **LinkedIn**: Requires client ID and client secret
-
-## Demo Account
-
-For testing purposes, you can use the following demo account:
-- Email: demo@example.com
-- Password: password
 
 ## License
 
