@@ -1,0 +1,15 @@
+{
+  "short_name": "Content Tracker",
+  "name": "Platform Engagement Tracker",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#00c487",
+  "background_color": "#ffffff"
+} 
